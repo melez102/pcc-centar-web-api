@@ -1,0 +1,6 @@
+C:\Users\SEF\source\repos\PCCentar\PCCBLL.Tests\bin\Debug\net5.0\CoverletSourceRootsMapping
+C:\Users\SEF\source\repos\PCCentar\PCCBLL.Tests\obj\Debug\net5.0\PCCBLL.Tests.csproj.AssemblyReference.cache
+C:\Users\SEF\source\repos\PCCentar\PCCBLL.Tests\obj\Debug\net5.0\PCCBLL.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SEF\source\repos\PCCentar\PCCBLL.Tests\obj\Debug\net5.0\PCCBLL.Tests.AssemblyInfoInputs.cache
+C:\Users\SEF\source\repos\PCCentar\PCCBLL.Tests\obj\Debug\net5.0\PCCBLL.Tests.AssemblyInfo.cs
+C:\Users\SEF\source\repos\PCCentar\PCCBLL.Tests\obj\Debug\net5.0\PCCBLL.Tests.csproj.CoreCompileInputs.cache

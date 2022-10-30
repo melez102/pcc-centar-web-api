@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "s95HuNxY8CUCo2JdveQm5qkt15nNIE1vbpmIyWc8D+95gsA1c2ESpftJejT9zHOKL8WOeRvDp2A6PyXk37nrSQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\SEF\\source\\repos\\PCCentar\\PCCentar\\PCC.BL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\SEF\\.nuget\\packages\\mysqlconnector\\2.1.13\\mysqlconnector.2.1.13.nupkg.sha512",
+    "C:\\Users\\SEF\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512",
+    "C:\\Users\\SEF\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\SEF\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\SEF\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
