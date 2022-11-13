@@ -13,9 +13,9 @@ namespace PCCBLL.Tests
         {
             //arrange
             var broj = 0;
-            Proizvodnja p=new Proizvodnja();
-            broj=p.IzbrojKolicinu(3);
-            var broj2 = p.IzbrojKolicinu(1);
+            //Proizvodnja p=new Proizvodnja();
+            broj=2;
+            var broj2 =3;
 
             
             //act

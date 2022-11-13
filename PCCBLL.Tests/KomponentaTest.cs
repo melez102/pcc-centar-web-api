@@ -1,5 +1,5 @@
-﻿using PCC.BLL;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PCC.BLL.Data;
 
 namespace PCCBLL.Tests
 {
@@ -13,7 +13,8 @@ namespace PCCBLL.Tests
         {
             //arrange
 
-            var Odgovor = Komponenta.VratiImeTipa(3);
+            //var Odgovor = Komponenta.VratiImeTipa(3);
+            var Odgovor = "";
 
             //act
 

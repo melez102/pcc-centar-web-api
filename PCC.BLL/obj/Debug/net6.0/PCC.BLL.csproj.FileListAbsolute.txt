@@ -10,3 +10,5 @@ C:\Users\SEF\source\repos\PCCentar\PCC.BLL\obj\Debug\net6.0\PCC.BLL.dll
 C:\Users\SEF\source\repos\PCCentar\PCC.BLL\obj\Debug\net6.0\refint\PCC.BLL.dll
 C:\Users\SEF\source\repos\PCCentar\PCC.BLL\obj\Debug\net6.0\PCC.BLL.pdb
 C:\Users\SEF\source\repos\PCCentar\PCC.BLL\obj\Debug\net6.0\ref\PCC.BLL.dll
+C:\Users\SEF\source\repos\PCCentar\PCC.BLL\bin\Debug\net6.0\PCC.BLL.runtimeconfig.json
+C:\Users\SEF\source\repos\PCCentar\PCC.BLL\obj\Debug\net6.0\PCC.BLL.genruntimeconfig.cache

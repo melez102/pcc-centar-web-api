@@ -10,14 +10,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Swashbuckle;
 using Microsoft.OpenApi.Models;
+using PCC.BLL;
+using PCC.BLL.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace WEB
 {
     public class Startup
     {
+
+        public string ConnectionString { get; set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            ConnectionString = Configuration.GetConnectionString("DefaultConnectionString");
         }
 
         public IConfiguration Configuration { get; }
@@ -33,6 +39,14 @@ namespace WEB
             });
 
             services.AddControllers();
+
+            //Configure DBContext with SQL
+
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConnectionString));
+
+            //Configure Services
+            services.AddTransient<KomponentaService>();
+            services.AddTransient<PorudzbinaService>();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -62,6 +76,9 @@ namespace WEB
                 // ...
                 endpoints.MapControllers();
             });
+
+            //AppDbInitializer.Seed(app);
+
         }
     }
 }
