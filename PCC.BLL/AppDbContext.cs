@@ -105,7 +105,6 @@ namespace PCC.BLL
         public DbSet<Nalog> Nalozi { get; set; }
         public DbSet<Racun> Racuni { get; set; }
         public DbSet<Racunar> Racunari { get; set; }
-        public DbSet<Stanje> Stanja { get; set; }
         public DbSet<Trebovanje> Trebovanja { get; set; }
         public DbSet<Porudzbina> Porudzbine { get; set; }
         public DbSet<Komponenta_Porudzbina> Komponenta_Porudzbine { get; set; }
@@ -114,6 +113,8 @@ namespace PCC.BLL
         public DbSet<Racunar_Nalog> RacunarNalog { get; set; }
         public DbSet<Trebovanje_Komponenta> Trebovanje_Komponenta { get; set; }
         public DbSet<Trebovanje_Racunar> Trebovanje_Racunar { get; set; }
+        public DbSet<Racun_Komponenta> Racun_Komponenta { get; set; }
+        public DbSet<Racun_Racunar> Racun_Racunar { get; set; }
 
 
 

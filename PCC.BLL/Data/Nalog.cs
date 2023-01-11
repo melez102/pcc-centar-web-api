@@ -15,9 +15,9 @@ namespace PCC.BLL.Data
         public DateTime Izdato { get; set; }
         public DateTime? Izvrsen { get; set; }
 
-        public List<Racunar> RacunariZaProizvodnju { get; set; }
+        public List<Racunar_Nalog> Racunar_Nalogs { get; set; }
 
-        public List<int> Kolicina { get; set; }
+        
 
 
         

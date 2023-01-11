@@ -11,12 +11,12 @@ namespace PCC.BLL.Data
         public int TrebovanjeID { get; set; }
         public Zaposleni Poslao { get; set; }
         public DateTime VremeSlanja { get; set; }
-        public DateTime VremePreuzimanja { get; set; }
+        public DateTime? VremePreuzimanja { get; set; }
 
         public Lokacija SaLokacije { get; set; }
         public Lokacija NaLokaciju { get; set; }
 
-        public bool Preuzeto { get; set; }
+        
 
         //public Stanje Stanje { get; set; }
         public List<Trebovanje_Racunar> Trebovanje_Racunars { get; set; }

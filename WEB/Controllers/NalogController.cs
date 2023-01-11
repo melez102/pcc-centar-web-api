@@ -19,8 +19,15 @@ namespace WEB.Controllers
         [HttpGet("get-nalog-saracunarimaikomponentama-by-id/{id}")]
         public IActionResult GetNalogSaRacunarimaIKomponentamaById(int id)
         {
-            _nalogService.GetNalogSaRacunarimaIKomponentamaById(id);
-            return Ok(_nalogService);
+            var nalog = _nalogService.GetNalogSaRacunarimaIKomponentamaById(id);
+            return Ok(nalog);
+        }
+
+        [HttpGet("get-neizvrsene-naloge")]
+        public IActionResult GetNeizvrseneNaloge()
+        {
+            var nalozi = _nalogService.GetNeizvrseneNaloge();
+            return Ok(nalozi);
         }
 
         [HttpPost("add-nalog")]

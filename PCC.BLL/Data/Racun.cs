@@ -20,9 +20,9 @@ namespace PCC.BLL.Data
 
         //Navigation props
 
-        public Zaposleni Zaposleni { get; set; }
+        public Zaposleni IzvrsioProdaju { get; set; }
         public int ZaposleniID { get; set; }
-        public Lokacija Lokacija { get; set; }
+        public Lokacija NaLokaciji { get; set; }
         public int LokacijaID { get; set; }
         public List<Racun_Komponenta> Racun_Komponentas { get; set; }
         public List<Racun_Racunar> Racun_Racunars { get; set; }

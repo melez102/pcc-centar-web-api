@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PCC.BLL.Services;
 using PCC.BLL.ViewModels;
+using System;
 
 namespace WEB.Controllers
 {
@@ -31,10 +32,17 @@ namespace WEB.Controllers
            return Ok(porudzbine);
         }
 
-        [HttpGet("get-all-nepreuzet-porudzbinas")]
-        public IActionResult GetAllPorudzbina(int n)
+        [HttpGet("get-porudzbina-by-id/{id}")]
+        public IActionResult GetPorudzbinaById(int n)
         {
             var porudzbine = _porudzbinaService.GetPorudzbinaById(n);
+            return Ok(porudzbine);
+        }
+
+        [HttpGet("get-all-porudzbinas-u-rasponu/{t1}{t2}")]
+        public IActionResult GetAllPorudzbinasURasponu(DateTime t1, DateTime t2)
+        {
+            var porudzbine = _porudzbinaService.GetAllPorudzbinasURasponu(t1, t2);
             return Ok(porudzbine);
         }
 

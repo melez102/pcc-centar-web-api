@@ -28,13 +28,13 @@ namespace PCC.BLL.Services
             _context.Nalozi.Add(_nalog);
             _context.SaveChanges();
 
-            foreach (var par in nal.RacunariIDs.Zip(_nalog.Kolicina))
+            foreach (var par in nal.RacunariIDs.Zip(nal.Kolicine))
             {
                 var _nalrac = new Racunar_Nalog()
                 {
                     NalogID = _nalog.NalogID,
                     RacunarID = par.First,
-                    Kolicina = par.Second,
+                    Kolicina = par.Second
 
                 };
                 _context.RacunarNalog.Add(_nalrac);
@@ -43,6 +43,18 @@ namespace PCC.BLL.Services
 
         }
 
+        public List<NalogBezSadrzajaVM> GetNeizvrseneNaloge()
+        {
+            var _nalozi = _context.Nalozi.
+                Where(n => n.Izvrsen == null).
+                Select(n => new NalogBezSadrzajaVM()
+                {
+                    NalogID = n.NalogID,
+                    Izdato = n.Izdato
+                }).ToList();
+
+            return _nalozi;
+        }
         public NalogSaRacunarimaIKomponentamaVM GetNalogSaRacunarimaIKomponentamaById(int id)
         {
             var _nalog = _context.Nalozi
@@ -52,22 +64,23 @@ namespace PCC.BLL.Services
                     NalogID = n.NalogID,
                     Izdato = n.Izdato,
                     Izvrsen = n.Izvrsen,
-                    Racunari = n.RacunariZaProizvodnju.Select(m => new RacunariKomponenteVM()
+                    Racunari = n.Racunar_Nalogs.Select(m => new RacunariKomponenteVM()
                     {
                         RacunarID = m.RacunarID,
-                        Ime = m.Ime,
-                        Komponente = m.Racunar_Komponentas.Select(b => new KomponenteVM()
+                        Ime = m.Racunar.Ime,
+                        Kolicina = m.Kolicina,
+                        Komponente = m.Racunar.Racunar_Komponentas.Select(b => new KomponenteVM()
                         {
                             Tip=b.Komponenta.Tip,
                             KomponentaID = b.KomponentaID,
                             KomponentaModel=b.Komponenta.Model,
                             Proizvodjac = b.Komponenta.Proizvodjac
-
+                            
                         }).ToList()
 
                     }).ToList(),
 
-                    Kolicina=n.Kolicina.ToList()
+                    //Kolicina=n.Kolicina.ToList()
 
                 }).FirstOrDefault();
         
@@ -87,6 +100,18 @@ namespace PCC.BLL.Services
                 _nalog.Izvrsen = DateTime.Now;
             }
             _context.SaveChanges();
+        }
+
+        public void DeleteNalogById(int id)
+        {
+            var _nalog = _context.Nalozi.FirstOrDefault(n => n.NalogID == id);
+            if (_nalog != null)
+            {
+                _context.Remove(_nalog);
+                _context.SaveChanges();
+
+            }
+
         }
 
 

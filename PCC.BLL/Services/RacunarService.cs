@@ -61,24 +61,20 @@ namespace PCC.BLL.Services
             return _racunarSaKomponentama;
         }
 
-        public Komponenta UpdateKomponentaById(int id, KomponentaVM komponenta)
+        public Racunar UpdateRacunar(RacunarVM racunar, int id)
         {
-            var _komponenta = _context.Komponente.FirstOrDefault(n => n.KomponentaID == id);
-            if (_komponenta != null)
+            var _racunar = _context.Racunari.FirstOrDefault(n => n.RacunarID == id);
+            if (_racunar != null)
             {
-                _komponenta.Tip = komponenta.Tip;
-                _komponenta.Model = komponenta.Model;
-                _komponenta.Proizvodjac = komponenta.Proizvodjac;
-                _komponenta.Info = komponenta.Info;
-                _komponenta.Cena = komponenta.Cena;
-                _komponenta.ProdajnaCena = komponenta.ProdajnaCena;
-
+                _racunar.RacunarID=racunar.RacunarID;
+                _racunar.Ime=racunar.Ime;
+                _racunar.Cena=racunar.Cena;
                 _context.SaveChanges();
             }
-            return _komponenta;
+            return _racunar;
         }
 
-        public void DeleteKomponentaById(int id)
+        public void DeleteRacunar(int id)
         {
             var _racunar = _context.Racunari.FirstOrDefault(n => n.RacunarID == id);
             if (_racunar != null)

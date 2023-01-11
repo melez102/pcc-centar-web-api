@@ -23,8 +23,9 @@ namespace PCC.BLL.Services
             var _trebovanje = new Trebovanje()
             {
                 Poslao = trebovanje.Poslao,
-                Preuzeto = false,
+
                 VremeSlanja = DateTime.Now,
+                VremePreuzimanja = null,
                 
                 SaLokacije = trebovanje.SaLokacije,
                 NaLokaciju = trebovanje.NaLokaciju,
@@ -64,6 +65,42 @@ namespace PCC.BLL.Services
 
         }
 
+        public List<TrebovanjeBezSadrzajaVM> GetAllNepreuzetaTrebovanjas()
+        {
+            var _trebovanja = _context.Trebovanja.
+                Where(n => n.VremePreuzimanja != null).
+                Select(n => new TrebovanjeBezSadrzajaVM()
+                {
+                    Poslao = n.Poslao.Ime,
+                    VremeSlanja = n.VremeSlanja,
+                    SaAdrese = n.SaLokacije.Adresa,
+                    IzGrada = n.SaLokacije.Grad,
+                    NaAdresu = n.NaLokaciju.Adresa,
+                    UGrad = n.NaLokaciju.Grad,
+
+                }).ToList();
+
+            return _trebovanja;
+        }
+
+        public List<TrebovanjeBezSadrzajaVM> GetAllTrebovanjaURasponu(DateTime t1, DateTime t2)
+        {
+            var _trebovanja = _context.Trebovanja.
+                Where(n => n.VremePreuzimanja <= t1 || n.VremePreuzimanja>= t2).
+                Select(n => new TrebovanjeBezSadrzajaVM()
+                {
+                    Poslao = n.Poslao.Ime,
+                    VremeSlanja = n.VremeSlanja,
+                    SaAdrese = n.SaLokacije.Adresa,
+                    IzGrada = n.SaLokacije.Grad,
+                    NaAdresu = n.NaLokaciju.Adresa,
+                    UGrad = n.NaLokaciju.Grad,
+
+                }).ToList();
+
+            return _trebovanja;
+        }
+
         public TrebovanjeGlavnoVM GetTrebovanjeById(int id)
         {
             var _trebovanje = _context.Trebovanja
@@ -79,7 +116,8 @@ namespace PCC.BLL.Services
                     Racunari = t.Trebovanje_Racunars.Select(r => new RacunariVM()
                     {
                         RacunarID = r.RacunarID,
-                        Ime = r.Racunar.Ime
+                        Ime = r.Racunar.Ime,
+                        Kolicina = r.Kolicina
                     }).ToList(),
 
                     Komponente = t.Trebovanje_Komponentas.Select(r => new KomponenteVM()
@@ -87,11 +125,11 @@ namespace PCC.BLL.Services
                         KomponentaID = r.KomponentaID,
                         KomponentaModel = r.Komponenta.Model,
                         Proizvodjac = r.Komponenta.Proizvodjac,
-                        Tip = r.Komponenta.Tip
+                        Tip = r.Komponenta.Tip,
+                        Kolicina = r.Kolicina
                     }).ToList(),
 
-                    KolicineRacunara = t.Trebovanje_Komponentas.Select(t => t.Kolicina).ToList(),
-                    KolicineKomponenti = t.Trebovanje_Komponentas.Select(t => t.Kolicina).ToList()
+                    //KolicineKomponenti = t.Trebovanje_Komponentas.Select(t => t.Kolicina).ToList()
 
                 }).FirstOrDefault();
             return _trebovanje;

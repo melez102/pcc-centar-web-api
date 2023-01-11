@@ -9,6 +9,7 @@ namespace PCC.BLL.ViewModels
 {
     public class NalogVM
     {
+        
 
         public DateTime Izdato { get; set; }
         public DateTime? Izvrsen { get; set; }
@@ -16,6 +17,14 @@ namespace PCC.BLL.ViewModels
         public List<int> RacunariIDs { get; set; }
         public List<int> Kolicine { get; set; }
 
+    }
+
+    public class NalogBezSadrzajaVM
+    {
+        public int NalogID { get; set; }
+        public DateTime Izdato { get; set; }
+        public DateTime? Izvrsen { get; set; }
+        
     }
 
 
@@ -27,7 +36,7 @@ namespace PCC.BLL.ViewModels
         public DateTime? Izvrsen { get; set; }
 
         public List<RacunariKomponenteVM> Racunari { get; set; }
-        public List<int> Kolicina { get; set; }
+        //public List<int> Kolicina { get; set; }
 
     }
 
@@ -37,12 +46,11 @@ namespace PCC.BLL.ViewModels
         public int RacunarID { get; set; }
         public string Ime { get; set; }
 
+        public int Kolicina { get; set; }
+
         //public List<int> KomponenteID { get; set; }
         //public List<string> KomponentaModel { get; set; }
         //public List<string> Proizvodjac { get; set; }
-
-        
-
         public List<KomponenteVM> Komponente { get; set; }
 
     }
@@ -53,6 +61,8 @@ namespace PCC.BLL.ViewModels
         public int KomponentaID { get; set; }
         public string KomponentaModel { get; set; }
         public string Proizvodjac { get; set; }
+
+        public int Kolicina { get; set; }
         
     }
 }

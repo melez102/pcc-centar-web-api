@@ -15,13 +15,9 @@ namespace PCC.BLL.Data
         public DateTime VremePorudzbine { get; set; }
         public DateTime? VremeIsporuke { get; set; }
 
-        
-        public bool Preuzeto { get; set; }
-
         //Navigation props
         public Lokacija Lokacija { get; set; }
         public int LokacijaID { get; set; }
-        public List<Komponenta> ListaKomponenta { get; set; }
         public List<Komponenta_Porudzbina> Komponenta_Porudzbinas { get; set; }
 
         

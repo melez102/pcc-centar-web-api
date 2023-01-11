@@ -8,6 +8,9 @@ namespace PCC.BLL.Data
 {
     public class Racunar_Nalog
     {
+
+        
+
         public int Id { get; set; }
 
         public int Kolicina { get; set; }

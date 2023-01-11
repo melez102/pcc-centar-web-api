@@ -19,9 +19,16 @@ namespace PCC.BLL.Data
         public string Grad { get; set; }
 
         public string Telefon { get; set; }
+
+
+
+        public List<Stanje_Komponenta> Stanje_K { get; set; }
+        public List<Stanje_Racunar> Stanje_R { get; set; }
+
+        //nav
+
         
         public List<Zaposleni> Zaposleni { get; set; }
-
         public List<Racun> Racuni { get; set; }
 
 

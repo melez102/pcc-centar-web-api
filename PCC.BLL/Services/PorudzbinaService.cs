@@ -26,7 +26,7 @@ namespace PCC.BLL.Services
                 LokacijaID = porudzbina.LokacijaID,
                 VremePorudzbine = DateTime.Now,
                 VremeIsporuke = null,
-                Preuzeto = false,
+                
 
             };
             _context.Porudzbine.Add(_porudzbina);
@@ -50,19 +50,45 @@ namespace PCC.BLL.Services
         public List<PorudzbinaPrikazVM> GetAllNepreuzetPorudzbinas()
         {
             var _porudzbinaSaKomponentama = _context.Porudzbine
-                .Where(n => n.Preuzeto == false)
+                .Where(n => n.VremeIsporuke == null)
                 .Select(n => new PorudzbinaPrikazVM()
                 {
                     PorudzbinaID = n.PorudzbinaID,
                     VremePorudzbine = n.VremePorudzbine,
                     Adresa = n.Lokacija.Adresa,
                     Grad = n.Lokacija.Grad,
-                    Preuzeto = n.Preuzeto,
-                    KomponentaIDs = n.Komponenta_Porudzbinas.Select(n => n.KomponentaID).ToList(),
-                    KomponentaModel = n.ListaKomponenta.Select(n => n.Model).ToList(),
-                    KomponentaCena = n.ListaKomponenta.Select(n => n.Cena).ToList(),
-                    KomponentaProizvodjac = n.ListaKomponenta.Select(n => n.Proizvodjac).ToList(),
-                    Kolicine = n.Komponenta_Porudzbinas.Select(n => n.Kolicina).ToList()
+                    Komponente = n.Komponenta_Porudzbinas.Select(kp => new KomponentaPrikazVM()
+                    {
+                        KomponentaID = kp.KomponentaID,
+                        Model = kp.Komponenta.Model,
+                        Proizvodjac = kp.Komponenta.Proizvodjac,
+                        Cena = kp.Komponenta.Cena,
+                        Kolicina = kp.Kolicina
+                    }).ToList()
+
+                }).ToList();
+            return _porudzbinaSaKomponentama;
+
+        }
+
+        public List<PorudzbinaPrikazVM> GetAllPorudzbinasURasponu(DateTime t1, DateTime t2)
+        {
+            var _porudzbinaSaKomponentama = _context.Porudzbine
+                .Where(n => n.VremePorudzbine<=t1 || n.VremePorudzbine>=t2)
+                .Select(n => new PorudzbinaPrikazVM()
+                {
+                    PorudzbinaID = n.PorudzbinaID,
+                    VremePorudzbine = n.VremePorudzbine,
+                    Adresa = n.Lokacija.Adresa,
+                    Grad = n.Lokacija.Grad,
+                    Komponente = n.Komponenta_Porudzbinas.Select(kp => new KomponentaPrikazVM()
+                    {
+                        KomponentaID = kp.KomponentaID,
+                        Model = kp.Komponenta.Model,
+                        Proizvodjac = kp.Komponenta.Proizvodjac,
+                        Cena = kp.Komponenta.Cena,
+                        Kolicina = kp.Kolicina
+                    }).ToList()
 
                 }).ToList();
             return _porudzbinaSaKomponentama;
@@ -80,20 +106,17 @@ namespace PCC.BLL.Services
                     
                     Adresa = n.Lokacija.Adresa,
                     Grad = n.Lokacija.Grad,
-                    Preuzeto = n.Preuzeto,
-                    KomponentaIDs = n.Komponenta_Porudzbinas.Select(n => n.KomponentaID).ToList(),
-                    KomponentaModel = n.ListaKomponenta.Select(n=>n.Model).ToList(),
-                    KomponentaCena = n.ListaKomponenta.Select(n=>n.Cena).ToList(),
-                    KomponentaProizvodjac = n.ListaKomponenta.Select(n => n.Proizvodjac).ToList(),
-                    Kolicine = n.Komponenta_Porudzbinas.Select(n => n.Kolicina).ToList()
+                    Komponente = n.Komponenta_Porudzbinas.Select(kp => new KomponentaPrikazVM()
+                    {
+                        KomponentaID = kp.KomponentaID,
+                        Model = kp.Komponenta.Model,
+                        Proizvodjac = kp.Komponenta.Proizvodjac,
+                        Cena = kp.Komponenta.Cena,
+                        Kolicina = kp.Kolicina
+                    }).ToList()
 
                 }).FirstOrDefault();
             return _porudzbinaSaKomponentama;
-            
-
-
-
-
         }
 
         public void PreuzmiPorudzbinu(int id)
@@ -101,13 +124,22 @@ namespace PCC.BLL.Services
             var _porudzbina = _context.Porudzbine.Where(i => i.PorudzbinaID == id).FirstOrDefault();
             if (_porudzbina != null)
             {
-                _porudzbina.Preuzeto = true;
                 _porudzbina.VremeIsporuke = DateTime.Now;
                 _context.SaveChanges();
             }  
         }
 
+        public void DeletePorudzbinaById(int id)
+        {
+            var _porudzbina = _context.Porudzbine.FirstOrDefault(n => n.PorudzbinaID == id);
+            if (_porudzbina != null)
+            {
+                _context.Remove(_porudzbina);
+                _context.SaveChanges();
 
+            }
+
+        }
 
     }
 }
